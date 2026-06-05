@@ -39,7 +39,7 @@
   function showNotFound() {
     document.getElementById('propertyContent').innerHTML = `
       <div style="text-align:center;padding:80px 0;">
-        <div style="font-size:4rem;margin-bottom:16px;">🏠</div>
+        <div style="margin-bottom:20px;color:var(--line);"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V21a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 22V12h6v10"/></svg></div>
         <h2>Объект не найден</h2>
         <p style="color:var(--muted);margin:12px 0 24px">Возможно, объявление было удалено или ссылка устарела.</p>
         <a href="catalog.html" class="btn btn--primary">Перейти в каталог</a>

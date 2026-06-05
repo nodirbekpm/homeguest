@@ -2,11 +2,18 @@
 (function () {
   'use strict';
 
+  const CAT_ICONS = {
+    'Море':    '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c1.5-2 3-2 4.5 0s3 2 4.5 0 3-2 4.5 0 3 2 4.5 0"/><path d="M2 17c1.5-2 3-2 4.5 0s3 2 4.5 0 3-2 4.5 0 3 2 4.5 0"/><path d="M2 7c1.5-2 3-2 4.5 0s3 2 4.5 0 3-2 4.5 0 3 2 4.5 0"/></svg>',
+    'Город':   '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="7" height="14"/><rect x="10" y="2" width="7" height="19"/><rect x="17" y="11" width="4" height="10"/><line x1="3" y1="21" x2="21" y2="21"/></svg>',
+    'Горы':    '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 20 9 8 13 16 15 12 21 20"/><line x1="3" y1="20" x2="21" y2="20"/></svg>',
+    'Природа': '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12M12 12C12 7 7 4 3 6c3 1 5 4 5 8M12 12c0-5 5-8 9-6-3 1-5 4-5 8"/></svg>'
+  };
+
   const CATEGORIES = [
-    { name: 'Море', emoji: '🏖️', image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=70', query: 'Море' },
-    { name: 'Город', emoji: '🏙️', image: 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=600&q=70', query: 'Город' },
-    { name: 'Горы', emoji: '🏔️', image: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=600&q=70', query: 'Горы' },
-    { name: 'Природа', emoji: '🌿', image: 'https://images.unsplash.com/photo-1521783988139-89397d761dce?auto=format&fit=crop&w=600&q=70', query: 'Природа' }
+    { name: 'Море',    image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=70', query: 'Море' },
+    { name: 'Город',   image: 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=600&q=70', query: 'Город' },
+    { name: 'Горы',    image: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=600&q=70', query: 'Горы' },
+    { name: 'Природа', image: 'https://images.unsplash.com/photo-1521783988139-89397d761dce?auto=format&fit=crop&w=600&q=70', query: 'Природа' }
   ];
 
   function init() {
@@ -28,7 +35,7 @@
              onerror="this.onerror=null;this.src='https://picsum.photos/seed/cat-${cat.query}/600/800'">
         <div class="category-card__overlay"></div>
         <div class="category-card__body">
-          <div class="category-card__icon">${cat.emoji}</div>
+          <div class="category-card__icon">${CAT_ICONS[cat.name]}</div>
           <div class="category-card__title">${cat.name}</div>
           <div class="category-card__count">${window.DATA.listings.filter(l => l.category === cat.query).length} объектов</div>
         </div>

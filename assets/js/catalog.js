@@ -41,7 +41,7 @@
 
     if (results.length === 0) {
       grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1">
-        <div class="empty-state__icon">🔍</div>
+        <div class="empty-state__icon"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--line)"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
         <h3>Ничего не найдено</h3>
         <p>Попробуйте изменить или сбросить фильтры</p>
         <button class="btn btn--primary" style="margin-top:16px" onclick="document.getElementById('resetFilters').click()">Сбросить фильтры</button>

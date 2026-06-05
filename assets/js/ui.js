@@ -41,7 +41,7 @@
       'text-align:center', 'padding:40px'
     ].join(';');
     _overlay.innerHTML =
-      '<div style="font-size:3rem;margin-bottom:20px">🔒</div>' +
+      '<div style="margin-bottom:20px"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>' +
       '<div style="font-family:Unbounded,sans-serif;font-size:1.25rem;font-weight:700;margin-bottom:12px">Демо-версия защищена</div>' +
       '<div style="color:rgba(255,255,255,0.65);max-width:360px;line-height:1.6">Инструменты разработчика недоступны в демо-режиме.<br>Закройте DevTools для продолжения просмотра.</div>';
     document.body.appendChild(_overlay);
@@ -67,7 +67,7 @@
 
   // Console warning + clear
   var _consoleMsg = [
-    '%c⛔ СТОП!',
+    '%c[ СТОП ]',
     'color:#ff6b6b;font-size:32px;font-weight:bold;'
   ];
   var _consoleMsg2 = [
