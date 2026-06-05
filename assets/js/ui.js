@@ -1,4 +1,86 @@
 /* ДомГость — ui.js — shared utilities, header, footer, favorites, cards */
+
+/* ── PROTECTION ── */
+(function () {
+  // Block right-click
+  document.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+
+  // Block keyboard shortcuts
+  document.addEventListener('keydown', function (e) {
+    // F12
+    if (e.key === 'F12') { e.preventDefault(); return false; }
+    // Ctrl+U (view source), Ctrl+S (save), Ctrl+Shift+I/J/C (devtools)
+    if (e.ctrlKey && (
+      e.key === 'u' || e.key === 'U' ||
+      e.key === 's' || e.key === 'S' ||
+      e.key === 'p' || e.key === 'P'
+    )) { e.preventDefault(); return false; }
+    if (e.ctrlKey && e.shiftKey && (
+      e.key === 'I' || e.key === 'i' ||
+      e.key === 'J' || e.key === 'j' ||
+      e.key === 'C' || e.key === 'c' ||
+      e.key === 'K' || e.key === 'k'
+    )) { e.preventDefault(); return false; }
+    // Cmd+Option+I (Mac)
+    if (e.metaKey && e.altKey && (e.key === 'i' || e.key === 'I')) { e.preventDefault(); return false; }
+  });
+
+  // DevTools size detection — blur overlay when devtools is open
+  var _threshold = 160;
+  var _overlay = null;
+
+  function showProtectOverlay() {
+    if (_overlay) return;
+    _overlay = document.createElement('div');
+    _overlay.style.cssText = [
+      'position:fixed', 'inset:0', 'z-index:99999',
+      'background:#1b2a4a',
+      'display:flex', 'flex-direction:column',
+      'align-items:center', 'justify-content:center',
+      'color:#fff', 'font-family:Manrope,sans-serif',
+      'text-align:center', 'padding:40px'
+    ].join(';');
+    _overlay.innerHTML =
+      '<div style="font-size:3rem;margin-bottom:20px">🔒</div>' +
+      '<div style="font-family:Unbounded,sans-serif;font-size:1.25rem;font-weight:700;margin-bottom:12px">Демо-версия защищена</div>' +
+      '<div style="color:rgba(255,255,255,0.65);max-width:360px;line-height:1.6">Инструменты разработчика недоступны в демо-режиме.<br>Закройте DevTools для продолжения просмотра.</div>';
+    document.body.appendChild(_overlay);
+  }
+
+  function hideProtectOverlay() {
+    if (_overlay) { _overlay.remove(); _overlay = null; }
+  }
+
+  function checkDevTools() {
+    var widthDiff  = window.outerWidth  - window.innerWidth;
+    var heightDiff = window.outerHeight - window.innerHeight;
+    if (widthDiff > _threshold || heightDiff > _threshold) {
+      showProtectOverlay();
+    } else {
+      hideProtectOverlay();
+    }
+  }
+
+  // Poll every 800ms
+  setInterval(checkDevTools, 800);
+  window.addEventListener('resize', checkDevTools);
+
+  // Console warning + clear
+  var _consoleMsg = [
+    '%c⛔ СТОП!',
+    'color:#ff6b6b;font-size:32px;font-weight:bold;'
+  ];
+  var _consoleMsg2 = [
+    '%cЭто демо-версия сайта ДомГость. Копирование кода запрещено.\nДля получения исходного кода обратитесь к разработчику.',
+    'color:#1b2a4a;font-size:14px;font-weight:600;'
+  ];
+  setInterval(function () {
+    console.clear();
+    console.log.apply(console, _consoleMsg);
+    console.log.apply(console, _consoleMsg2);
+  }, 1500);
+})();
+
 (function () {
   'use strict';
 
